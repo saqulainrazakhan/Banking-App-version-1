@@ -8,6 +8,7 @@ import { withDraw, deposit } from '../../actions';
 const Banking = () => {
 
   const [cash, setCash] = useState('');
+  const [balance, setBalance] = useState('5000');
 
   const dispatch = useDispatch();
 
@@ -21,9 +22,10 @@ const Banking = () => {
   }
 
   const handleDeposit = () => {
-    dispatch(deposit(+cash))
-    setCash(cash);
-
+    dispatch(deposit(+balance))
+    setBalance(cash);
+    setCash('');
+console.log(balance)
   }
 
   return (
@@ -54,14 +56,14 @@ const Banking = () => {
 
               <CardTitle>
                 <h2>Total Amount</h2>
-                <h3>Balance : <strong>${cash}</strong></h3>
+                <h3>Balance : <strong>${balance}</strong></h3>
                 <hr />
                 <div className="field">
-                  <input type='number' className='input' placeholder='amount' value={cash} onChange={changeHandler} />
+                  <input type='number' className='input' placeholder='amount' onChange={changeHandler} />
                 </div>
                 <div>
                   <button className='button mr-2 is-danger' onClick={handleWithDraw}>Withdraw</button>
-                  <button className='button mr-2 is-success' onClick={handleDeposit}>Deposit</button>
+                  <button className='button mr-2 is-success'  onClick={handleDeposit}>Deposit</button>
                 </div>
 
               </CardTitle>
